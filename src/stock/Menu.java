@@ -27,7 +27,7 @@ public abstract class Menu {
 		do {
 			Format.stars(Colors.TEXT_BLACK_BOLD + Colors.ANSI_CYAN_BACKGROUND);
 			Format.text("", 0, 1, true);
-			Format.text("PETBANK", 0, 1, true);
+			Format.text("Amazonas", 0, 1, true);
 			Format.text("", 0, 1, true);
 			Format.stars("");
 			Format.text("", 0, 1, true);
@@ -208,6 +208,7 @@ public abstract class Menu {
 	}
 
 	public static void credits() {
+		Format.text("Where Quality Meets Convenience!", 0, 1, true);
 		Format.stars("");
 		Format.text("Coded by Sarah Yukino Nakada", 0, 1, true);
 		Format.text("github.com/sarassaura       ", 0, 1, true);
