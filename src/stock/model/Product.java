@@ -16,13 +16,15 @@ public class Product extends Menu {
 	private int type;
 
 	public Product(String id, String name, int totalSales, int availableProducts, float price, String category,
-			String brand) {
+			String brand, int type) {
 		this.id = id;
 		this.totalSales = totalSales;
 		this.availableProducts = availableProducts;
 		this.price = price;
 		this.category = category;
 		this.brand = brand;
+		this.type = type;
+		this.name = name;
 	}
 
 	public String getId() {
@@ -99,7 +101,7 @@ public class Product extends Menu {
 		Format.stars("");
 		System.out.print(Colors.TEXT_WHITE);
 		Format.text("Products's ID: " + this.id, 0, 1, false);
-		Format.text("Products's Name: " + this.id, 0, 1, false);
+		Format.text("Products's Name: " + this.name, 0, 1, false);
 		Format.text("Total Sales: " + this.totalSales, 0, 1, false);
 		Format.text("Available: " + this.availableProducts, 0, 1, false);
 		Format.text("Price: " + this.price, 0, 1, false);

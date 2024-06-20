@@ -1,6 +1,8 @@
 package mockup;
 
 import stock.controller.Controller;
+import stock.model.ConsumerProducts;
+import stock.model.IndustrialProducts;
 
 public class MockupData {
 	Controller products;
@@ -10,16 +12,17 @@ public class MockupData {
 	}
 	
 	public void initialize() {
-		ConsumerProducts cc1 = new ConsumerProducts(products.generateID(), 123, 1, "João Silva", 1000f, 100.0f);
+		ConsumerProducts cc1 = new ConsumerProducts(products.generateID(), "Jiowl", 2000, 20, 10.0f, "Shoes",
+				"Nike", "João da Silva");
 		products.signup(cc1);
 
-		ConsumerProducts cc2 = new ConsumerProducts(products.generateID(), 124, 1, "Maria da Silva", 2000f, 100.0f);
+		ConsumerProducts cc2 = new ConsumerProducts(products.generateID(), "Bananana", 1000, 10, 100.0f, "Food","The Good Food", "Maria da Silva");
 		products.signup(cc2);
 
-		IndustrialProducts cp1 = new IndustrialProducts(products.generateID(), 125, 2, "Mariana dos Santos", 4000f, 12);
+		IndustrialProducts cp1 = new IndustrialProducts(products.generateID(), "SmartPen", 1000, 10, 100.0f, "office","Google", "Google");
 		products.signup(cp1);
 
-		IndustrialProducts cp2 = new IndustrialProducts(products.generateID(), 125, 2, "Juliana Ramos", 8000f, 15);
+		IndustrialProducts cp2 = new IndustrialProducts(products.generateID(), "SlowPen", 1000, 10, 100.0f, "office","Safari", "Safari");
 		products.signup(cp2);
 	}
 

@@ -8,7 +8,7 @@ public class IndustrialProducts extends Product {
 
 	public IndustrialProducts(String id, String name, int totalSales, int availableProducts, float price,
 			String category, String brand, String enterprise) {
-		super(id, name, totalSales, availableProducts, price, category, brand);
+		super(id, name, totalSales, availableProducts, price, category, brand, 2);
 		this.enterprise = enterprise;
 	}
 

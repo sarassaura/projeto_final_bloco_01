@@ -61,6 +61,7 @@ public abstract class Menu {
 
 				System.out.print("Enter the Product's Name: ");
 				name = sc.nextLine();
+				sc.nextLine();
 				System.out.print("Enter the Product's Price: ");
 				price = sc.nextFloat();
 				System.out.print("Enter the Available Amount: ");
@@ -78,6 +79,7 @@ public abstract class Menu {
 
 				switch (type) {
 				case 1 -> {
+					sc.skip("\\R?");
 					System.out.print("Enter the Client Name: ");
 					name = sc.nextLine();
 					String productNumber = products.signup(new ConsumerProducts(products.generateID(), name, 0,
@@ -154,7 +156,7 @@ public abstract class Menu {
 						nameType = sc.nextLine();
 
 						products.update(new ConsumerProducts(id, name, totalSales, availableProducts, price, category,
-								brand, name));
+								brand, nameType));
 					}
 					case 2 -> {
 						System.out.print("Enter Industry Name: ");
@@ -165,12 +167,12 @@ public abstract class Menu {
 
 					}
 					default -> {
-						System.out.println("Invalid Product Type!                                  ");
+						Format.text("Invalid Product Type!", 0,0,false);
 					}
 					}
 
 				} else {
-					System.out.println("Account not Found!                                     ");
+					Format.text("Product not Found!", 0,0,false);
 				}
 
 				keyPress();
@@ -207,8 +209,8 @@ public abstract class Menu {
 
 	public static void credits() {
 		Format.stars("");
-		Format.text("Coded by Sarah Yukino Nakada                 ", 0, 1, true);
-		Format.text("github.com/sarassaura                        ", 0, 1, true);
+		Format.text("Coded by Sarah Yukino Nakada", 0, 1, true);
+		Format.text("github.com/sarassaura       ", 0, 1, true);
 		Format.stars("");
 	}
 
