@@ -13,6 +13,7 @@ public class Product extends Menu {
 	private float price;
 	private String category;
 	private String brand;
+	private int type;
 
 	public Product(String id, String name, int totalSales, int availableProducts, float price, String category,
 			String brand) {
@@ -78,6 +79,14 @@ public class Product extends Menu {
 
 	public void setBrand(String brand) {
 		this.brand = brand;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public void showProduct() {

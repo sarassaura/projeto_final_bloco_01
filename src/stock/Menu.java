@@ -4,16 +4,24 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import mockup.MockupData;
+import stock.controller.Controller;
+import stock.model.ConsumerProducts;
+import stock.model.IndustrialProducts;
 import stock.util.Colors;
 import stock.util.Format;
 
 public abstract class Menu {
 	public static void main(String[] args) {
 
+		Controller products = new Controller();
+		MockupData mockupData = new MockupData(products);
+		mockupData.initialize();
+
 		Scanner sc = new Scanner(System.in);
 
-		int option = 0, availableProducts, totalSales;
-		String category, brand, id;
+		int option = 0, availableProducts, totalSales, type;
+		String category, brand, id, name, nameType;
 		float price;
 
 		do {
@@ -51,6 +59,8 @@ public abstract class Menu {
 
 				System.out.print(Colors.TEXT_RESET);
 
+				System.out.print("Enter the Product's Name: ");
+				name = sc.nextLine();
 				System.out.print("Enter the Product's Price: ");
 				price = sc.nextFloat();
 				System.out.print("Enter the Available Amount: ");
@@ -61,10 +71,34 @@ public abstract class Menu {
 				System.out.print("Enter the Product's Brand: ");
 				brand = sc.nextLine();
 
+				do {
+					System.out.print("Enter the type of Product (1-Consumer ou 2-Industrial): ");
+					type = sc.nextInt();
+				} while (type < 1 || type > 2);
+
+				switch (type) {
+				case 1 -> {
+					System.out.print("Enter the Client Name: ");
+					name = sc.nextLine();
+					String productNumber = products.signup(new ConsumerProducts(products.generateID(), name, 0,
+							availableProducts, price, category, brand, name));
+					System.out.println("\nThe Product Id: " + productNumber + " was successfully created!");
+				}
+				case 2 -> {
+					System.out.print("Enter the Enterprise Name: ");
+					name = sc.nextLine();
+					String productNumber = products.signup(new IndustrialProducts(products.generateID(), name, 0,
+							availableProducts, price, category, brand, name));
+					System.out.println("\nThe Product Id: " + productNumber + " was successfully created!");
+				}
+				}
+
 				keyPress();
 				break;
 			case 2:
 				Format.title("Show all Products");
+
+				products.showAll();
 
 				keyPress();
 				break;
@@ -77,6 +111,10 @@ public abstract class Menu {
 				sc.nextLine();
 				id = sc.nextLine();
 
+				System.out.println();
+
+				products.searchByNumber(id);
+
 				keyPress();
 				break;
 			case 4:
@@ -87,20 +125,53 @@ public abstract class Menu {
 				System.out.println("Enter the Account's ID: ");
 				sc.nextLine();
 				id = sc.nextLine();
-				
-				System.out.print("Enter the Product's Price: ");
-				price = sc.nextFloat();
-				System.out.print("Enter the Available Amount: ");
-				availableProducts = sc.nextInt();
-				System.out.print("Enter the Total Sales: ");
-				totalSales = sc.nextInt();
-				System.out.print("Enter the Product's category: ");
-				sc.skip("\\R?");
-				category = sc.nextLine();
-				System.out.print("Enter the Product's Brand: ");
-				brand = sc.nextLine();
 
-				System.out.print(Colors.TEXT_RESET);
+				var searchProduct = products.searchInCollection(id);
+
+				if (searchProduct != null) {
+
+					type = searchProduct.getType();
+
+					System.out.print(Colors.TEXT_RESET);
+
+					System.out.print("Enter the Product's Name: ");
+					name = sc.nextLine();
+					System.out.print("Enter the Product's Price: ");
+					price = sc.nextFloat();
+					System.out.print("Enter the Available Amount: ");
+					availableProducts = sc.nextInt();
+					System.out.print("Enter the Total Sales: ");
+					totalSales = sc.nextInt();
+					System.out.print("Enter the Product's category: ");
+					sc.skip("\\R?");
+					category = sc.nextLine();
+					System.out.print("Enter the Product's Brand: ");
+					brand = sc.nextLine();
+
+					switch (type) {
+					case 1 -> {
+						System.out.print("Enter Client Name: ");
+						nameType = sc.nextLine();
+
+						products.update(new ConsumerProducts(id, name, totalSales, availableProducts, price, category,
+								brand, name));
+					}
+					case 2 -> {
+						System.out.print("Enter Industry Name: ");
+						nameType = sc.nextLine();
+
+						products.update(new IndustrialProducts(id, name, totalSales, availableProducts, price, category,
+								brand, nameType));
+
+					}
+					default -> {
+						System.out.println("Invalid Product Type!                                  ");
+					}
+					}
+
+				} else {
+					System.out.println("Account not Found!                                     ");
+				}
 
 				keyPress();
 				break;
@@ -112,6 +183,8 @@ public abstract class Menu {
 				System.out.println("Enter the Account's ID: ");
 				sc.nextLine();
 				id = sc.nextLine();
+
+				products.delete(id);
 
 				keyPress();
 				break;
