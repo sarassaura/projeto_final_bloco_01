@@ -1,7 +1,6 @@
 package stock;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import mockup.MockupData;
@@ -9,6 +8,7 @@ import stock.controller.Controller;
 import stock.model.ConsumerProducts;
 import stock.model.IndustrialProducts;
 import stock.util.Colors;
+import stock.util.Xception;
 import stock.util.Format;
 
 public abstract class Menu {
@@ -42,16 +42,8 @@ public abstract class Menu {
 			Format.text("Choose an Operation by Number:", 0, 1, true);
 			Format.text("", 0, 1, true);
 
-			try {
-				System.out.print(Colors.TEXT_RESET);
-				option = sc.nextInt();
-				System.out.print(Colors.ANSI_CYAN_BACKGROUND + Colors.TEXT_BLACK_BOLD);
-			} catch (InputMismatchException e) {
-				System.out.print(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND);
-				Format.text("Enter Integer Values!", 1, 1, true);
-				sc.nextLine();
-				option = 0;
-			}
+			option = Xception.Inteiro();
+			System.out.print(Colors.ANSI_CYAN_BACKGROUND + Colors.TEXT_BLACK_BOLD);
 
 			switch (option) {
 			case 1:
@@ -61,13 +53,12 @@ public abstract class Menu {
 
 				System.out.print("Enter the Product's Name: ");
 				name = sc.nextLine();
-				sc.nextLine();
 				System.out.print("Enter the Product's Price: ");
 				price = sc.nextFloat();
 				System.out.print("Enter the Available Amount: ");
-				availableProducts = sc.nextInt();
+				availableProducts = Xception.Inteiro();
 				System.out.print("Enter the Product's category: ");
-				sc.skip("\\R?");
+				sc.nextLine();
 				category = sc.nextLine();
 				System.out.print("Enter the Product's Brand: ");
 				brand = sc.nextLine();
@@ -125,7 +116,6 @@ public abstract class Menu {
 				System.out.print(Colors.TEXT_RESET);
 
 				System.out.println("Enter the Account's ID: ");
-				sc.nextLine();
 				id = sc.nextLine();
 
 				var searchProduct = products.searchInCollection(id);
@@ -141,9 +131,9 @@ public abstract class Menu {
 					System.out.print("Enter the Product's Price: ");
 					price = sc.nextFloat();
 					System.out.print("Enter the Available Amount: ");
-					availableProducts = sc.nextInt();
+					availableProducts = Xception.Inteiro();
 					System.out.print("Enter the Total Sales: ");
-					totalSales = sc.nextInt();
+					totalSales = Xception.Inteiro();
 					System.out.print("Enter the Product's category: ");
 					sc.skip("\\R?");
 					category = sc.nextLine();
@@ -167,12 +157,12 @@ public abstract class Menu {
 
 					}
 					default -> {
-						Format.text("Invalid Product Type!", 0,0,false);
+						Format.text("Invalid Product Type!", 0, 0, false);
 					}
 					}
 
 				} else {
-					Format.text("Product not Found!", 0,0,false);
+					Format.text("Product not Found!", 0, 0, false);
 				}
 
 				keyPress();
