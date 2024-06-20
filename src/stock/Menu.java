@@ -7,7 +7,7 @@ import java.util.Scanner;
 import stock.util.Colors;
 import stock.util.Format;
 
-public abstract class Menu {
+public class Menu {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
@@ -87,7 +87,7 @@ public abstract class Menu {
 				System.out.println("Enter the Account's ID: ");
 				sc.nextLine();
 				id = sc.nextLine();
-				
+
 				System.out.print("Enter the Product's Price: ");
 				price = sc.nextFloat();
 				System.out.print("Enter the Available Amount: ");

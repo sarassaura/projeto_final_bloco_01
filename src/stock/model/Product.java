@@ -1,10 +1,9 @@
 package stock.model;
 
-import stock.Menu;
 import stock.util.Colors;
 import stock.util.Format;
 
-public class Product extends Menu {
+public abstract class Product {
 
 	private String id;
 	private String name;
