@@ -7,13 +7,15 @@ import java.util.Scanner;
 import stock.util.Colors;
 import stock.util.Format;
 
-public class Menu {
+public abstract class Menu {
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
-		
-		int option = 0;
-		
+
+		int option = 0, availableProducts, totalSales;
+		String category, brand, id;
+		float price;
+
 		do {
 			Format.stars(Colors.TEXT_BLACK_BOLD + Colors.ANSI_CYAN_BACKGROUND);
 			Format.text("", 0, 1, true);
@@ -47,6 +49,18 @@ public class Menu {
 			case 1:
 				Format.title("Create Product");
 
+				System.out.print(Colors.TEXT_RESET);
+
+				System.out.print("Enter the Product's Price: ");
+				price = sc.nextFloat();
+				System.out.print("Enter the Available Amount: ");
+				availableProducts = sc.nextInt();
+				System.out.print("Enter the Product's category: ");
+				sc.skip("\\R?");
+				category = sc.nextLine();
+				System.out.print("Enter the Product's Brand: ");
+				brand = sc.nextLine();
+
 				keyPress();
 				break;
 			case 2:
@@ -57,10 +71,34 @@ public class Menu {
 			case 3:
 				Format.title("Search Product's Data - by ID");
 
+				System.out.print(Colors.TEXT_RESET);
+
+				System.out.println("Enter the Account's ID: ");
+				sc.nextLine();
+				id = sc.nextLine();
+
 				keyPress();
 				break;
 			case 4:
 				Format.title("Update Product data");
+
+				System.out.print(Colors.TEXT_RESET);
+
+				System.out.println("Enter the Account's ID: ");
+				sc.nextLine();
+				id = sc.nextLine();
+				
+				System.out.print("Enter the Product's Price: ");
+				price = sc.nextFloat();
+				System.out.print("Enter the Available Amount: ");
+				availableProducts = sc.nextInt();
+				System.out.print("Enter the Total Sales: ");
+				totalSales = sc.nextInt();
+				System.out.print("Enter the Product's category: ");
+				sc.skip("\\R?");
+				category = sc.nextLine();
+				System.out.print("Enter the Product's Brand: ");
+				brand = sc.nextLine();
 
 				System.out.print(Colors.TEXT_RESET);
 
@@ -70,6 +108,10 @@ public class Menu {
 				Format.title("Delete Product");
 
 				System.out.print(Colors.TEXT_RESET);
+
+				System.out.println("Enter the Account's ID: ");
+				sc.nextLine();
+				id = sc.nextLine();
 
 				keyPress();
 				break;
@@ -87,16 +129,16 @@ public class Menu {
 			}
 
 		} while (option != 6);
-		
+
 	}
-	
+
 	public static void credits() {
 		Format.stars("");
 		Format.text("Coded by Sarah Yukino Nakada                 ", 0, 1, true);
 		Format.text("github.com/sarassaura                        ", 0, 1, true);
 		Format.stars("");
 	}
-	
+
 	public static void keyPress() {
 		try {
 			System.out.println(Colors.TEXT_RESET + "\nPress Enter to Continue...");
