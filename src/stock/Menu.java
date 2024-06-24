@@ -42,7 +42,7 @@ public abstract class Menu {
 			Format.text("Choose an Operation by Number:", 0, 1, true);
 			Format.text("", 0, 1, true);
 
-			option = Xception.Inteiro();
+			option = Xception.Inteiro(sc);
 			System.out.print(Colors.ANSI_CYAN_BACKGROUND + Colors.TEXT_BLACK_BOLD);
 
 			switch (option) {
@@ -52,11 +52,12 @@ public abstract class Menu {
 				System.out.print(Colors.TEXT_RESET);
 
 				System.out.print("Enter the Product's Name: ");
+				sc.nextLine();
 				name = sc.nextLine();
 				System.out.print("Enter the Product's Price: ");
-				price = sc.nextFloat();
+				price = Xception.Decimal(sc);
 				System.out.print("Enter the Available Amount: ");
-				availableProducts = Xception.Inteiro();
+				availableProducts = Xception.Inteiro(sc);
 				System.out.print("Enter the Product's category: ");
 				sc.nextLine();
 				category = sc.nextLine();
@@ -116,6 +117,7 @@ public abstract class Menu {
 				System.out.print(Colors.TEXT_RESET);
 
 				System.out.println("Enter the Account's ID: ");
+				sc.nextLine();
 				id = sc.nextLine();
 
 				var searchProduct = products.searchInCollection(id);
@@ -131,9 +133,9 @@ public abstract class Menu {
 					System.out.print("Enter the Product's Price: ");
 					price = sc.nextFloat();
 					System.out.print("Enter the Available Amount: ");
-					availableProducts = Xception.Inteiro();
+					availableProducts = Xception.Inteiro(sc);
 					System.out.print("Enter the Total Sales: ");
-					totalSales = Xception.Inteiro();
+					totalSales = Xception.Inteiro(sc);
 					System.out.print("Enter the Product's category: ");
 					sc.skip("\\R?");
 					category = sc.nextLine();

@@ -5,9 +5,7 @@ import java.util.Scanner;
 
 public class Xception {
 	
-	public static int Inteiro() {
-		Scanner sc = new Scanner(System.in);
-		
+	public static int Inteiro(Scanner sc) {		
 		do {
 			try {
 				System.out.print(Colors.TEXT_RESET);
@@ -15,6 +13,20 @@ public class Xception {
 			} catch (InputMismatchException e) {
 				System.out.print(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND);
 				Format.text("Enter Integer Values!", 1, 1, true);
+				sc.nextLine();
+			}
+		} while (true);
+	
+	}
+	
+	public static float Decimal(Scanner sc) {		
+		do {
+			try {
+				System.out.print(Colors.TEXT_RESET);
+				return sc.nextFloat();
+			} catch (InputMismatchException e) {
+				System.out.print(Colors.TEXT_YELLOW + Colors.ANSI_BLACK_BACKGROUND);
+				Format.text("Enter Float Values!", 1, 1, true);
 				sc.nextLine();
 			}
 		} while (true);
